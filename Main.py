@@ -23,7 +23,10 @@ position = []
 #Numbers representing totals
 rojo = 0
 azul = 0
-otro = 0
+mvc = 0
+pip = 0
+proj = 0
+ind = 0
 
 print()
 print("Proven method")
@@ -37,13 +40,14 @@ for i in range(len(reps)):
         rojo  = rojo + 1
     elif partido == "Partido Nuevo Progresista":
         azul = azul + 1
-    else:
-        otro = otro + 1
-        
-        
-
-    # position.append(rep.find(class_="position").get_text())
-    
+    elif partido == "Movimiento Victoria Ciudadana":
+        mvc = mvc + 1
+    elif partido == "Independiente":
+        ind = ind + 1
+    elif partido == "Partido Independentista Puertorriqueño":
+        pip = pip + 1
+    elif partido == "Proyecto Dignidad":
+        proj = proj +1    
 
 
 content = {
@@ -55,22 +59,16 @@ content = {
 """
 
 df = pd.DataFrame(content)
-print(df)
 df.to_csv("Test_run.csv")
 
+
 #Print out pi graph with parties
-partidos = np.array([azul, rojo, otro])
-plt.pie(partidos)
+partidos = np.array([azul, rojo, pip, mvc, ind, proj])
+labels = ["PNP", "Popular", "PIP", "MVC", "Independiente", "Projecto Dignidad"]
+colors = ["Blue", "Red", "Green", "Orange", "White", "#89CFF0"]
+plt.pie(partidos, labels = labels, colors = colors)
+plt.legend(title = "Senado de Puerto Rico")
 plt.show()
 
 
-# print()
-# print("Total por partidos")
-# print("PNP: ", )
-# print("Popular: ", )
-# print("MVC: ", )
-# print()
-"""Add political leanings"""
-
-    
 

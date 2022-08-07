@@ -1,8 +1,9 @@
 
 from bs4 import BeautifulSoup
 import pandas as pd
-import numpy as np
 import requests
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 """Scrape website initially.
@@ -19,24 +20,49 @@ reps = soup.find_all(class_="senator_cont")
 names = []
 p_party = []
 position = []
+#Numbers representing totals
+rojo = 0
+azul = 0
+otro = 0
+
 print()
 print("Proven method")
 for i in range(len(reps)):
     rep = reps[i]
     names.append(rep.find(class_="name").get_text())
+    
     p_party.append(rep.find(class_="partido").get_text())
-    position.append(rep.find(class_="position").get_text())
+    partido = rep.find(class_="partido").get_text()
+    if partido == "Partido Popular Democrático" :
+        rojo  = rojo + 1
+    elif partido == "Partido Nuevo Progresista":
+        azul = azul + 1
+    else:
+        otro = otro + 1
+        
+        
+
+    # position.append(rep.find(class_="position").get_text())
+    
 
 
 content = {
     "Nombre" : names,
     "Partido Político" : p_party,
-    "Posición" : position
+    # "Posición" : position
     }
+"""Extract total numbers and create a graphical representation of the number of people in congress
+"""
 
 df = pd.DataFrame(content)
 print(df)
 df.to_csv("Test_run.csv")
+
+#Print out pi graph with parties
+partidos = np.array([azul, rojo, otro])
+plt.pie(partidos)
+plt.show()
+
 
 # print()
 # print("Total por partidos")

@@ -33,7 +33,7 @@ print("Proven method")
 for i in range(len(reps)):
     rep = reps[i]
     names.append(rep.find(class_="name").get_text())
-    
+    # names.append(rep.find(class_="posición").get_text())
     p_party.append(rep.find(class_="partido").get_text())
     partido = rep.find(class_="partido").get_text()
     if partido == "Partido Popular Democrático" :

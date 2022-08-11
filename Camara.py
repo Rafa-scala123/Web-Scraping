@@ -13,7 +13,6 @@ soup = BeautifulSoup(page.content, "html.parser")
 def scrape(add, list):
     pop1 = soup.find(class_=add)
     p1 = pop1.find_all(class_="name second_font")
-    print("Populares: ")
     #First row done
     for p in p1:
         #Find name of each one
@@ -23,12 +22,14 @@ def scrape(add, list):
         
         
 ###Scraping
+reps = []
 """Populares"""
 populares = []
-
+partidos = []
 scrape("elementor-element elementor-element-eaf07b3 elementor-widget elementor-widget-ova_team", populares)
 scrape("elementor-element elementor-element-a38c7a4 elementor-widget elementor-widget-ova_team", populares)
-
+# for i in populares:
+    
 """PNPs"""
 pnps = []
 
@@ -53,12 +54,23 @@ ind = []
 scrape("elementor-element elementor-element-f3eb98a elementor-widget elementor-widget-ova_team", ind)
 """Separate the representatives"""
 
-"""Test trial"""
-print("Popular: " , populares)
-print("PNPS: ", pnps)
-# """take this data and scrape it into a graph"""
-# print("Representantes de Puerto Rico: ")
-# for rep in reps:
-#     print(rep.get_text().strip())
+"""Collect data"""
+arr = populares + pnps + mvc + pip + pd + ind
+print(arr)
 
-# """Take their positions"""
+
+
+# """Test trial"""
+# print("Popular: " , populares)
+# print("PNPS: ", pnps)
+# print("MVC: ", mvc)
+# print("PIP: ", pip)
+# print("Independiente: ", ind)
+
+"""Graphical Representation"""
+# partidos = np.array([len(pnps), len(populares),len (pip), len(mvc), len(ind), len(pd)])
+# labels = ["PNP", "Popular", "PIP", "MVC", "Independiente", "Projecto Dignidad"]
+# colors = ["Blue", "Red", "Green", "Orange", "White", "#89CFF0"]
+# plt.pie(partidos, labels = labels, colors = colors)
+# plt.legend(title = "Camara de Puerto Rico")
+# plt.show()

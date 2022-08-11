@@ -59,7 +59,7 @@ content = {
 """
 
 df = pd.DataFrame(content)
-df.to_csv("Test_run.csv")
+df.to_csv("SenadoPR.csv")
 
 
 #Print out pi graph with parties
